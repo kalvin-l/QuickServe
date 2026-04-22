@@ -1,6 +1,6 @@
 # QuickServe
 
-QuickServe is a full-stack group ordering system for cafes/restaurants.
+QuickServe is a full-stack ordering system for cafes.
 
 This repository contains:
 - `quickserve-frontend`: Next.js customer + admin web app

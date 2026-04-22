@@ -32,7 +32,7 @@ from pathlib import Path
 # Create FastAPI app
 app = FastAPI(
     title="QuickServe API",
-    description="Group ordering system for cafe/restaurant",
+    description="Ordering system for cafes",
     version="1.0.0"
 )
 
