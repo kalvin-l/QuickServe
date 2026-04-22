@@ -1,0 +1,37 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.log
+*.backup
+*.db
+*.sqlite3
+.env
+.env.*
+.venv/
+venv/
+
+# Backend local/runtime files
+fastapi-backend/.env
+fastapi-backend/venv/
+fastapi-backend/__pycache__/
+fastapi-backend/uploads/
+fastapi-backend/*.db
+fastapi-backend/debug_log.txt
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+
+# Frontend env files
+quickserve-frontend/.env*
+quickserve-frontend/.git.backup/

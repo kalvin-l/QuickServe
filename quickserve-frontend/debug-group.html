@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Group Creation</title>
+</head>
+<body>
+    <h1>Debug Group Creation</h1>
+    <p>Check the browser console for detailed logs.</p>
+
+    <div id="session-info"></div>
+
+    <script>
+        // Check if session exists in localStorage
+        const savedSession = localStorage.getItem('tableSession');
+        if (savedSession) {
+            const session = JSON.parse(savedSession);
+            document.getElementById('session-info').innerHTML = `
+                <h2>Session Found:</h2>
+                <pre>${JSON.stringify(session, null, 2)}</pre>
+                <p>table_id: ${session.table_id}</p>
+                <p>session_id: ${session.session_id}</p>
+            `;
+
+            // Try to create group
+            document.getElementById('session-info').innerHTML += `
+                <button onclick="testCreateGroup(${session.table_id}, '${session.session_id}')">
+                    Test Create Group
+                </button>
+            `;
+        } else {
+            document.getElementById('session-info').innerHTML = '<p>No session found. Please scan QR code or enter access code first.</p>';
+        }
+
+        async function testCreateGroup(tableId, sessionId) {
+            console.log('Creating group with:', { tableId, sessionId });
+
+            const response = await fetch('http://localhost:8000/api/groups/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    table_id: tableId,
+                    session_id: sessionId,
+                    payment_type: 'individual',
+                    host_name: 'Test User'
+                })
+            });
+
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            document.getElementById('session-info').innerHTML += `
+                <h2>Result:</h2>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+        }
+    </script>
+</body>
+</html>
